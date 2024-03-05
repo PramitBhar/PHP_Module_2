@@ -9,19 +9,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$warning_message = "*Try to fill this field with Alphabet";
 	// This condition is used if someone explicitely try to change disabled field.
 	if (!empty(htmlspecialchars($fullname))) {
-		$message0 = "You can't explicitly change the disabled field.";
-	} else {
+		$error_message = "You can't explicitly change the disabled field.";
+		$fullname="";
+	}
+	else {
 		$fullname = $fname . " " . $lname;
 		/* Below conditions are checking for if both the input field is Properly
 		validate pattern or not,if first input field is properly validate and second
 		input field is not or viceversa. */
 		if (!preg_match($pattern, $fname) && !preg_match($pattern, $lname)) {
-			$message1 = $warning_message;
-		} elseif (!preg_match($pattern, $fname)) {
-			$message2 = $warning_message;
-		} elseif (!preg_match($pattern, $lname)) {
-			$message3 = $warning_message;
-		} else {
+			$both_input_error_message = $warning_message;
+		}
+		elseif (!preg_match($pattern, $fname)) {
+			$first_input_error_message = $warning_message;
+		}
+		elseif (!preg_match($pattern, $lname)) {
+			$second_input_error_message = $warning_message;
+		}
+		else {
 			$message = "Hello, " . $fullname;
 		}
 	}
@@ -48,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 
 					<span class="warning-message">
-						<?php if ($message0 != "") echo $message0; ?>
+						<?php if ($error_message != "") echo $error_message; ?>
 					</span>
 					<!-- Form input fields.-->
 					<!-- First name input field. -->
@@ -59,7 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						 placeholder="First Name" value="<?php echo $fname ?>" name="fname"
 						 maxlength="35">
 						<p class="warning-message">
-							<?php echo ($message1 != "") ? $message1 : $message2 ?>
+							<?php echo ($both_input_error_message != "") ?
+							$both_input_error_message : $first_input_error_message ?>
 						</p>
 					</div>
 
@@ -71,14 +77,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						<input type="text" class="form-input-fields" placeholder="Last Name"
 						 value="<?php echo $lname ?>" name="lname" maxlength="35">
 						<p class="warning-message">
-							<?php echo ($message1 != "") ? $message1 : $message3 ?>
+							<?php echo ($both_input_error_message != "") ?
+							$both_input_error_message : $second_input_error_message ?>
 						</p>
 					</div>
 					<!-- Full name display field. -->
 					<div class="form-fields">
 						<span class="form-fields-heading"> Full Name:</span>
 						<input type="text" class="form-input-fields" placeholder="Full Name"
-						 name="fullname" value="<?php if ($message != "") echo
+						 name="fullname" value="<?php if (empty($error_message)) echo
 						 htmlspecialchars($fullname); ?>" disabled>
 					</div>
 
@@ -98,3 +105,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 
 </html>
+
