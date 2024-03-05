@@ -1,0 +1,56 @@
+body{
+    background-color: cornflowerblue;
+}
+
+.container{
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.form-container{
+    width: 100%;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.form-contents{
+    padding: 50px 200px;
+    background-color: aliceblue;
+}
+
+
+.form-fields{
+    margin-bottom: 20px;
+}
+.form-fields-heading{
+    font-size: 20px;
+
+}
+.form-input-fields{
+      height: 30px;
+      width: 500px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+}
+
+.form-submit-btn{
+    padding: 20px 100px;
+    text-decoration: none;
+    border: none;
+    font-size: 20px;
+    font-family: monospace;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+
+
+.output-message{
+    font-size: 25px;
+}
+
+.warning-message{
+    color: red;
+}
