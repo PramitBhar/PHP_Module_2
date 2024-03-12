@@ -1,0 +1,5 @@
+/* Reverse the allignment of image-box & info-box. */
+.item:nth-child(2n) {
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
