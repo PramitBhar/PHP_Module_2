@@ -15,32 +15,25 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
   else {
     $mail = new PHPMailer(true);
     try {
-    $mail->isSMTP();
-    $mail->Host       = 'smtp.gmail.com;';
-    $mail->SMTPAuth   = true;
-    $mail->Username   = 'rimobhar0426@gmail.com';
-    $mail->Password   = 'rpelcfhpvhujticz';
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-    $mail->Port       = 465;
-    $i=0;
-    while ($i < 2) {
-
+      $mail->isSMTP();
+      $mail->Host       = 'smtp.gmail.com;';
+      $mail->SMTPAuth   = true;
+      $mail->Username   = 'rimobhar0426@gmail.com';
+      $mail->Password   = 'rpelcfhpvhujticz';
+      $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+      $mail->Port       = 465;
       $mail->setFrom('rimobhar0426@gmail.com');
       $mail->addAddress($email);
-      // $mail->addAddress('receiver2@gfg.com', 'Name');
-
       $mail->isHTML(true);
       $mail->Subject = 'Welcome email'. $i;
       $mail->Body    = '<b>Thanks for submission.</b>';
       $mail->AltBody = 'Body in plain text for non-HTML mail clients';
       $mail->send();
       echo "Mail has been sent successfully!";
-      $i++;
     }
-} catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-}
-
+    catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
   }
 }
 ?>
