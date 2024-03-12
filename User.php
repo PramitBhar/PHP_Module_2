@@ -1,18 +1,18 @@
 <?php
 
-  /*
+  /**
     * This class is used to validate user input.
     *
     * @param type: string
     *
-    * return type: object
+    * @return type: object
   */
   class User {
     // This variable indicates the first name of the user.
     public string $fname;
     // This variable indicates the last name of the user.
     public string $lname;
-    /*
+    /**
       * This constuctor class initialize the fname and lname variable.
       *
       * @param type: string
@@ -21,12 +21,12 @@
       $this->fname = $fname;
       $this->lname = $lname;
     }
-    /*
+    /**
       * This function is used to validate user input using regex
       *
       * @param type: no parameter is passed
       *
-      * return type: string
+      * @return type: string
     */
     public function validate_user_input() {
       // This pattern is used to check given input is valid or not.
@@ -49,12 +49,12 @@
         return $this->lname;
       }
     }
-    /*
+    /**
       * This function is used to validate image.
       *
-      * @params type: no params is pass.
+      * @param type: no params is pass.
       *
-      * return type: string
+      * @return type: string
     */
     public function is_uploaded_image_validate() {
       if (isset($_FILES["image"])) {

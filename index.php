@@ -8,6 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $warning_message = "*Try to fill this field with Alphabet";
   // New obj created.
   $user = new User($fname, $lname);
+  
   // This condition is used if someone explicitely try to change disabled field.
   if (!empty(htmlspecialchars($fullname))) {
     $error_message = "You can't explicitly change the disabled field.";
@@ -115,17 +116,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
       </div>
       <!-- Output message after form submission. -->
-      <span class="output-message">
-        <?php echo $message ?>
-      </span>
       <div >
         <img src="<?php echo $image_validation; ?>"
         alt="Uploaded Image">
       </div>
+      <span class="output-message">
+        <?php echo $message ?>
+      </span>
     </div>
   </div>
   <!-- Container end. -->
 </body>
-
 </html>
+
 
