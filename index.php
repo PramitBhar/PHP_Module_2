@@ -1,6 +1,16 @@
 <?php
 
 include 'User.php';
+// This variable contains all types of warning message which is shown in pages.
+$warning_message="";
+// This variable contains warning message for First name user input.
+$first_input_error_message = "";
+// This variable contains warning message for Last name user input.
+$second_input_error_message = "";
+// This variable contains image path.
+$image_validation = "";
+// This variable is used to validate user form input.
+$form_validation = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $fname = trim($_POST["fname"], " ");
   $lname = trim($_POST["lname"], " ");
@@ -8,13 +18,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $warning_message = "*Try to fill this field with Alphabet";
   // New obj created.
   $user = new User($fname, $lname);
-  
   // This condition is used if someone explicitely try to change disabled field.
   if (!empty(htmlspecialchars($fullname))) {
     $error_message = "You can't explicitly change the disabled field.";
   }
   else {
-    $form_validation = $user->validate_user_input();
+    $form_validation = $user->validateUserInput();
     $warning_message = "*Try to fill this field with Alphabet";
     if ($form_validation != $fname && $form_validation != $lname &&
     !empty($form_validation)) {
@@ -32,9 +41,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $second_input_error_message = $warning_message;
     }
     // This is used to validate user uploaded file is image or not.
-    $image_validation = $user->is_uploaded_image_validate();
-    $imageFileType = strtolower(pathinfo($image_validation, PATHINFO_EXTENSION))
-    ;
+    $image_validation = $user->isUploadedImageValidate();
+    $imageFileType = strtolower(pathinfo($image_validation, PATHINFO_EXTENSION));
+
     // If image file type not matched then it shows error message.
     if (
       $imageFileType != "jpg" && $imageFileType != "png" &&

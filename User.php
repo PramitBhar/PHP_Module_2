@@ -28,23 +28,26 @@
       *
       * @return type: string
     */
-    public function validate_user_input() {
+    public function validateUserInput() {
       // This pattern is used to check given input is valid or not.
       $pattern = "/^[A-Za-z]+$/";
       // Below condition is used to check if both the input field is correct.
       if (preg_match($pattern, $this->fname) &&
-      preg_match($pattern, $this->lname)) {
-        $fullname = $this->fname . " " . $this->lname;
-        return $fullname;
+        preg_match($pattern, $this->lname)) {
+        $fullName = $this->fname . " " . $this->lname;
+        return $fullName;
       }
-      if(
+      // Below condition is used to check if both the input field is wrong or not.
+      elseif(
         !preg_match($pattern, $this->fname) &&
         !preg_match($pattern, $this->lname)) {
           return "";
       }
+      // Below condition is used to check if first name input field is wrong or not.
       elseif (!preg_match($pattern, $this->fname)) {
         return $this->fname;
       }
+      //Below condition is used to check if last name input field is wrong or not.
       elseif (!preg_match($pattern, $this->lname)) {
         return $this->lname;
       }
@@ -56,13 +59,13 @@
       *
       * @return type: string
     */
-    public function is_uploaded_image_validate() {
+    public function isUploadedImageValidate() {
       if (isset($_FILES["image"])) {
-        $uploaded_img_dir = "user_uploaded_image/";
-        $target_file = $uploaded_img_dir .
+        $uploadedImgDir = "user_uploaded_image/";
+        $targetFile = $uploadedImgDir .
         basename($_FILES["image"]["name"]);
       }
-      return $target_file;
+      return $targetFile;
     }
   }
 ?>
